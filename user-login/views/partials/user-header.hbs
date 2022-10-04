@@ -1,0 +1,47 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-light w-100">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Audi </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">company</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">innovations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">models</a>
+            </li>
+            {{#if user}}
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Welcome: {{user.name}}</a>
+            </li>
+            {{/if}}
+
+          </ul>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              {{#if user}}
+                {{user.name}}
+              {{else}}
+                Account
+              {{/if}}
+            </button>
+            <div class="dropdown-menu">
+              {{#if user}}
+                <a class="dropdown-item" href="/logout">Logout</a>
+              {{else}}
+                <a class="dropdown-item" href="/login">Login</a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>

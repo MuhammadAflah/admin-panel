@@ -1,0 +1,31 @@
+<header>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Audi (admin panel)</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/admin/products">All-Innovations</a>
+                        </li>
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="#">All models</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">All brands</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Welcome: {{adminsession.name}}</a>
+                        </li>
+                    </ul>
+                    {{#if adminsession}}
+                    <a href="/admin/admin-logout" class="btn btn-dark">Logout</a>
+                    {{/if}}
+                </div>
+            </div>
+        </nav>
+    </header>

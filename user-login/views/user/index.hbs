@@ -1,0 +1,39 @@
+{{#if user}}
+    <style>
+            body{
+                background: url(https://www.hdcarwallpapers.com/download/abt_audi_rs_6_nogaro_edition_4k-1920x1080.jpg);
+
+            }
+        </style>
+    <section>
+        <div class="container mt-5">
+        <div class="row border-4">
+            {{!-- <h1>dummy cards</h1> --}}
+            {{#each products}}
+            <div class="col-md-3 mb-4">
+                <div class="card mt-5" style="width: 18rem; height:30rem ">
+                    <img src="{{this.image}}" class="card-img-top" alt="..." style="height: 12rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p class="card-text">{{this.price}}</p>
+                        <p class="card-text">{{this.description}}</p>
+                        <a href="#" class="btn btn-primary">Book now</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    </section>
+{{!-- {{else}}
+<style>
+    body{
+        background: url(https://i.pinimg.com/originals/39/40/69/394069cc283fa32de37b0e8c7dfc42c5.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<h1 class="d-flex justify-content-center text-light">please login to explore more on AUDI</h1>
+<a href="/login" class="btn-btn-primary">LOGIN</a> --}}
+{{/if}}
+    
