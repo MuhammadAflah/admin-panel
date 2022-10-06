@@ -73,8 +73,9 @@ router.get('/signup',(req,res,next)=>{
 
 
 
-router.get('/login',(req,res)=>{
-  if(req.session.loggedIn){
+router.get('/login',(req,res,next)=>{
+  let user=req.session.user
+  if(user){
     res.redirect('/')
   }else{
 
@@ -87,11 +88,11 @@ router.post('/signup',(req,res)=>{
   userHelpers.signup(req.body).then((response)=>{
     console.log(response);
     if(response){
-      req.session.loggedIn = true
-      req.session.user = response.user
+      // req.session.loggedIn = true
+      // req.session.user = response.user
       res.redirect('/login')
     }else{
-      req.session.signupError="email id already exists!!"
+      req.session.signupError="email already exists!!"
       res.redirect('/signup')
     }
   })
@@ -113,8 +114,10 @@ router.post('/login', function (req, res, next) {
 })
 
 router.get('/logout',(req,res)=>{
-  req.session.destroy(()=>{
-    res.redirect('/login')
-  })
+  // req.session.destroy(()=>{
+    req.session.user=null;
+    
+  res.redirect('/login')
+  // })
 })
 module.exports = router;

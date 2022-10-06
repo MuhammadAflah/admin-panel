@@ -6,7 +6,7 @@ const { route } = require('./users');
 
 router.get('/',function(req, res, next){
     adminHelpers.getAllUsers().then((allUsers)=>{
-        let adminsession=req.session.user
+        let adminsession=req.session.admin
         if(adminsession){
             res.render('admin/view-users', {admin:true,allUsers, adminsession})
         }else{
@@ -18,7 +18,7 @@ router.get('/',function(req, res, next){
 })
 
 router.get('/add-user',(req,res)=>{
-    let adminsession=req.session.user
+    let adminsession=req.session.admin
     res.render('admin/add-user',{adduserError: req.session.adduserError, admin: true, adminsession})
     req.session.adduserError=false
     // res.render('admin/add-user')
@@ -50,7 +50,7 @@ router.get('/delete-user/:email', function (req, res) {
 })
 
 router.get('/edit-user/:email', async (req, res) => {
-    let adminsession = req.session.user
+    let adminsession = req.session.admin
 
     let userMail = req.params.email
     console.log(req.params.email);
@@ -69,7 +69,7 @@ router.post('/edit-user/:email',(req,res)=>{
 })
 
 router.get('/admin-login',(req,res)=>{
-    let admin=req.session.user
+    let admin=req.session.admin
     if (admin){
         res.redirect('/admin')
     }else{
@@ -82,7 +82,7 @@ router.post('/admin-login',(req,res)=>{
     adminHelpers.adminLogin(req.body).then((response)=>{
         if (response.status) {
             req.session.loggedIn = true
-            req.session.user = response.user
+            req.session.admin = response.user
             // console.log(req.session.user);
             res.redirect('/admin')
         } else {
@@ -93,7 +93,7 @@ router.post('/admin-login',(req,res)=>{
 })
 
 router.get('/admin-signup',(req,res,next)=>{
-    let adminsession=req.session.user
+    let adminsession=req.session.admin
     res.render('admin/admin-signup', {admin:true, addadminError: req.session.addadminError, adminsession})
     req.session.addadminError=false
 })
@@ -110,9 +110,10 @@ router.post('/admin-signup', (req,res,next)=>{
 })
 
 router.get('/admin-logout',(req,res)=>{
-    req.session.destroy(()=>{
-        res.redirect('/admin/admin-login')
-    })
+    // req.session.destroy(()=>{
+        req.session.admin=null
+    res.redirect('/admin/admin-login')
+    // })
 })
 
 module.exports = router;

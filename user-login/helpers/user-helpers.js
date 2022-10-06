@@ -2,13 +2,18 @@ var db = require('../config/connection')
 const bcrypt = require('bcrypt')
 module.exports = {
     signup: (userData) => {
+        let response={}
         return new Promise(async (resolve, reject) => {
-            userData.password = await bcrypt.hash(userData.password, 10);
-            db.get().collection('login').insertOne(userData).then((req, res) => {
-                resolve(userData)
-            })
+            let user=await db.get().collection('login').findOne({email:userData.email})
+            if(user){
+                resolve(response.status=false)
+            }else{
+                userData.password=await bcrypt.hash(userData.password,10)
+                db.get().collection('login').insertOne(userData).then((req,res)=>{
+                    resolve(response.status=true)
+                })
+            }
         })
-
     },
     login: (userData) => {
         // var p = userData.password

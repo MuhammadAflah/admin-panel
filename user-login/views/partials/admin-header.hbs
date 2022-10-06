@@ -18,9 +18,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">All brands</a>
                         </li>
+                        {{#if adminsession}}
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Welcome: {{adminsession.name}}</a>
                         </li>
+                        {{/if}}
                     </ul>
                     {{#if adminsession}}
                     <a href="/admin/admin-logout" class="btn btn-dark">Logout</a>
