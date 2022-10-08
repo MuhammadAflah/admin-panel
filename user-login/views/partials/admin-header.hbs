@@ -7,10 +7,11 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                {{#if adminsession}}
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin/products">All-Innovations</a>
+                            <a class="nav-link active" aria-current="page" href="#">All-Innovations</a>
                         </li>
                         <li class="nav-item"> 
                             <a class="nav-link" href="#">All models</a>
@@ -18,16 +19,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">All brands</a>
                         </li>
-                        {{#if adminsession}}
+                    
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Welcome: {{adminsession.name}}</a>
                         </li>
-                        {{/if}}
+                        
                     </ul>
-                    {{#if adminsession}}
+    
                     <a href="/admin/admin-logout" class="btn btn-dark">Logout</a>
-                    {{/if}}
                 </div>
+                {{/if}}
             </div>
         </nav>
     </header>
